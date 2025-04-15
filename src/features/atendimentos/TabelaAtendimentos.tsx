@@ -14,32 +14,35 @@ export default function TabelaAtendimentos() {
   }, [user]);
 
   return (
-    <div className="bg-white mt-6 p-4 rounded shadow max-w-4xl mx-auto">
-      <h2 className="text-xl font-bold mb-4">Atendimentos Recentes</h2>
-      {atendimentos.length === 0 ? (
-        <p className="text-gray-500 text-sm">Nenhum atendimento lançado ainda.</p>
-      ) : (
-        <table className="w-full border text-sm">
-          <thead className="bg-gray-100 text-left">
+    <div className="bg-[#f6f4f7] p-6 rounded-md shadow-md">
+      <h2 className="text-lg font-semibold mb-4">Últimos lançamentos</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full text-sm border-collapse">
+          <thead className="bg-[#e8e5ec] text-left">
             <tr>
-              <th className="p-2 border">Paciente</th>
-              <th className="p-2 border">Procedimento</th>
-              <th className="p-2 border">Valor</th>
-              <th className="p-2 border">Data</th>
+              <th className="p-3">Pacientes</th>
+              <th className="p-3">Procedimento</th>
+              <th className="p-3 text-right">Valor</th>
+              <th className="p-3 text-right">Data</th>
             </tr>
           </thead>
           <tbody>
             {atendimentos.map((a, i) => (
-              <tr key={i} className="hover:bg-gray-50">
-                <td className="p-2 border">{a.paciente}</td>
-                <td className="p-2 border">{a.procedimentoNome}</td>
-                <td className="p-2 border">R$ {a.valor.toFixed(2)}</td>
-                <td className="p-2 border">{new Date(a.data).toLocaleDateString()}</td>
+              <tr
+                key={i}
+                className="border-t border-gray-200 hover:bg-gray-100 transition"
+              >
+                <td className="p-3">{a.paciente}</td>
+                <td className="p-3">{a.procedimentoNome}</td>
+                <td className="p-3 text-right">R$ {a.valor.toFixed(2)}</td>
+                <td className="p-3 text-right">
+                  {new Date(a.data).toLocaleDateString()}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-      )}
+      </div>
     </div>
   );
 }

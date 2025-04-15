@@ -36,39 +36,40 @@ export default function AttendanceForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow max-w-md mx-auto mt-6">
-      <h2 className="text-xl font-bold mb-3 text-center">Lançar Atendimento</h2>
+    <form onSubmit={handleSubmit} 
+    className="bg-[#f6f4f7] p-6 rounded-md shadow-md mb-6">
 
-      <input
-        type="text"
-        placeholder="Nome do Paciente"
-        className="w-full border p-2 mb-2 rounded"
-        value={paciente}
-        onChange={(e) => setPaciente(e.target.value)}
-      />
+      <h2 className="text-lg font-semibold mb-4">Cadastrar atendimento</h2>
 
-      <select
-        className="w-full border p-2 mb-2 rounded"
-        value={procedimentoId}
-        onChange={(e) => setProcedimentoId(e.target.value)}
-      >
-        <option value="">Selecione o Procedimento</option>
-        {procedimentos.map((p) => (
-          <option key={p.id} value={p.id}>
-            {p.nome} - R$ {p.valor}
-          </option>
-        ))}
-      </select>
+<div className="flex flex-col gap-4 md:flex-row md:items-center">
+        <input
+          type="text"
+          placeholder="Nome do paciente"
+          value={paciente}
+          onChange={(e) => setPaciente(e.target.value)}
+          className="w-full border border-gray-300 rounded px-3 py-2"
+        />
 
-      {selectedProc && (
-        <div className="text-right text-sm mb-2 text-gray-600">
-          Valor: R$ {selectedProc.valor.toFixed(2)}
+        <select
+          value={procedimentoId}
+          onChange={(e) => setProcedimentoId(e.target.value)}
+          className="w-full border border-gray-300 rounded px-3 py-2"
+        >
+        <option value="">Selecione o procedimento</option>
+          {procedimentos.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.nome} – R$ {p.valor}
+            </option>
+          ))}
+        </select>
+
+        <button
+          type="submit"
+          className="bg-[#005e60] text-white px-5 py-2 rounded hover:bg-[#00494b] transition"
+        >
+          SALVAR
+        </button>
         </div>
-      )}
-
-      <button className="bg-blue-600 text-white w-full p-2 rounded hover:bg-blue-700 transition">
-        Registrar Atendimento
-      </button>
     </form>
   );
 }
